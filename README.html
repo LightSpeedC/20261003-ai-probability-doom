@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI p(doom) 調査</title>
+<style>
+:root {
+	--navy1: #12224d; --navy2: #2f5fbf;
+	--ink: #1c2330; --ink-soft: #4a5568; --line: #d9dfe8; --code-bg: #f4f6fa; --link: #1a4fa0;
+	--accent: var(--navy1); --accent2: var(--navy2); --soft: #f2f5fb;
+}
+.ch01 { --accent: hsl(280,78%,25%); --accent2: hsl(280,58%,55%); --soft: hsl(280,28%,95%); }
+.ch02 { --accent: hsl(240,78%,25%); --accent2: hsl(240,58%,55%); --soft: hsl(240,28%,95%); }
+.ch03 { --accent: hsl(200,78%,25%); --accent2: hsl(200,58%,55%); --soft: hsl(200,28%,95%); }
+.ch04 { --accent: hsl(160,78%,25%); --accent2: hsl(160,58%,55%); --soft: hsl(160,28%,95%); }
+.ch05 { --accent: hsl(120,78%,25%); --accent2: hsl(120,58%,55%); --soft: hsl(120,28%,95%); }
+.ch06 { --accent: hsl(80,78%,25%); --accent2: hsl(80,58%,55%); --soft: hsl(80,28%,95%); }
+.ch07 { --accent: hsl(40,78%,25%); --accent2: hsl(40,58%,55%); --soft: hsl(40,28%,95%); }
+.ch08 { --accent: hsl(0,78%,25%); --accent2: hsl(0,58%,55%); --soft: hsl(0,28%,95%); }
+body { margin: 0; background: #ffffff; color: var(--ink, #1c2330); font-family: "Yu Gothic UI", "Meiryo", sans-serif; font-size: 15.5px; line-height: 1.85; }
+.titlebar { background: linear-gradient(135deg, var(--navy1, #12224d), var(--navy2, #2f5fbf)); color: #fff; padding: 34px 30px 30px; }
+.titlebar .inner, .wrap, footer { max-width: 1600px; margin: 0 auto; }
+.titlebar h1 { font-size: 1.9em; margin: 0 0 6px; color: #fff; }
+.titlebar .lead, .titlebar .date { color: #dfe7f7; background: transparent; margin: 4px 0; font-size: 0.95em; }
+.wrap { padding: 0 30px; }
+a { color: var(--link, #1a4fa0); background: transparent; }
+a.home { display: inline-block; margin-top: 16px; padding: 2px 12px; border-radius: 6px; background: linear-gradient(100deg, var(--navy1, #12224d), var(--navy2, #2f5fbf)); color: #fff; text-decoration: none; font-weight: 700; }
+.toc ol { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; counter-reset: tocnum; }
+.toc ol li { counter-increment: tocnum; }
+.toc ol a { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; white-space: normal; width: 310px; max-width: 100%; padding: 6px 12px; border-radius: 6px; background: linear-gradient(100deg, var(--accent, #12224d), var(--accent2, #2f5fbf)); color: #fff; text-decoration: none; font-weight: 700; box-sizing: border-box; }
+.toc ol a::before { content: counter(tocnum) ". "; }
+section { background: linear-gradient(180deg, var(--soft, #f2f5fb), #ffffff); color: var(--ink, #1c2330); padding: 4px 26px 26px; margin: 34px 0; border-radius: 10px; }
+section h1 { background: linear-gradient(100deg, var(--accent, #12224d), var(--accent2, #2f5fbf)); color: #fff; padding: 14px 20px; margin: 26px 0 20px; border-radius: 8px; font-size: 1.45em; box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
+section h2 { border-left: 6px solid var(--accent, #12224d); background: linear-gradient(90deg, var(--soft, #f2f5fb), #ffffff); color: var(--accent, #12224d); padding: 6px 12px; margin: 30px 0 12px; font-size: 1.15em; }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.08); margin: 10px 0; font-size: 0.93em; }
+th { background: linear-gradient(100deg, var(--accent, #12224d), var(--accent2, #2f5fbf)); color: #fff; padding: 9px 12px; text-align: left; }
+td { background: #ffffff; color: var(--ink, #1c2330); padding: 9px 12px; vertical-align: top; border-bottom: 1px solid var(--line, #d9dfe8); }
+tr:nth-child(even) td { background: #fafbfe; }
+td.nowrap { white-space: nowrap; }
+.callout { border-left: 6px solid var(--accent, #12224d); background: linear-gradient(180deg, var(--soft, #f2f5fb), #ffffff); color: var(--ink, #1c2330); padding: 10px 16px; border-radius: 0 8px 8px 0; margin: 14px 0; }
+.callout strong { color: var(--accent, #12224d); background: transparent; }
+.chart { margin: 10px 0; }
+.chart svg { max-width: 100%; height: auto; display: block; }
+.chart figcaption { color: var(--ink-soft, #4a5568); background: transparent; font-size: 0.9em; }
+footer { padding: 18px 30px 30px; }
+</style>
+</head>
+<body>
+<div class="titlebar"><div class="inner">
+<h1>AI p(doom) 調査</h1>
+<p class="lead">AI が人類の破局をもたらす確率 p(doom)。誰がどう見積もり、なぜ値が分かれ、世界と日本はどう反応しているか</p>
+<p class="date">📅 作成: 2026-10-03 / 更新: 2026-10-06</p>
+</div></div>
+<div class="wrap">
+<a class="home" href="../" title="親サイト">⌂</a>
+
+<p>出典 URL は検索結果で確認できたものだけを載せる。本文まで読めなかったもの、日付を URL から推定したもの、筆者の解釈は、それぞれその旨を書く。</p>
+
+<nav class="toc"><ol>
+<li class="ch01"><a href="#ch01">p(doom) とは</a></li>
+<li class="ch02"><a href="#ch02">数値で見る p(doom)</a></li>
+<li class="ch03"><a href="#ch03">なぜ値が分かれるか</a></li>
+<li class="ch04"><a href="#ch04">滅亡論と反対論</a></li>
+<li class="ch05"><a href="#ch05">ニュースの流れ</a></li>
+<li class="ch06"><a href="#ch06">国家元首・首脳の反応</a></li>
+<li class="ch07"><a href="#ch07">日本の論調</a></li>
+<li class="ch08"><a href="#ch08">まとめ</a></li>
+</ol></nav>
+
+<section class="ch01" id="ch01">
+<h1>p(doom) とは</h1>
+<p><strong>p(doom)</strong>（ピー・ドゥーム）は probability of doom の略で、高度な AI が人類の絶滅や、取り返しのつかない破局をもたらす確率を、個人が主観で見積もった値を指す。「あなたの p(doom) は?」のように使われ、AI 安全性の研究者、AI 業界、技術系コミュニティで定番の問いになっている。言葉自体は、LessWrong や MIRI の周辺（第 3 章の系譜 1）から広まった。</p>
+<ul>
+<li><strong>計算で出す数値ではない。</strong>どれだけ心配しているかを、確率の形で表したもの</li>
+<li><strong>「doom」の範囲は人によって違う。</strong>絶滅だけを数える人もいれば、人類が将来を自分で決められなくなる事態まで含める人もいる</li>
+<li><strong>期間もそろっていない。</strong>「今世紀中」「10 年以内」「AGI ができたら」など、前提が人ごとに異なる</li>
+</ul>
+<div class="callout"><strong>並べて比べるときの注意:</strong> 定義も期間もばらばらなので、第 2 章の数値は厳密に比較できない。批判する側は「科学を装った雰囲気（vibes）」だと指摘している（Gizmodo, 2026-09）。Hinton 自身も「確率を言う人はみな勘で言っている」と認めている。</div>
+</section>
+
+<section class="ch02" id="ch02">
+<h1>数値で見る p(doom)</h1>
+<h2>主要人物の見積もり</h2>
+<p>多くは Wikipedia の P(doom) 記事（<a href="https://en.wikipedia.org/wiki/P(doom)">https://en.wikipedia.org/wiki/P(doom)</a>）の表による。そこに挙がっている一次出典は、完全な URL までは確かめていない。</p>
+<figure class="chart">
+<svg viewBox="0 0 900 500" role="img" aria-label="主要人物の p(doom) の棒グラフ">
+<defs>
+<linearGradient id="g-r01-1a" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(0,78%,25%)"/><stop offset="1" stop-color="hsl(0,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-1b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(14,78%,25%)"/><stop offset="1" stop-color="hsl(14,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-1c" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(28,78%,25%)"/><stop offset="1" stop-color="hsl(28,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-1d" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(84,78%,25%)"/><stop offset="1" stop-color="hsl(84,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-1e" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(140,78%,25%)"/><stop offset="1" stop-color="hsl(140,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-1f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(196,78%,25%)"/><stop offset="1" stop-color="hsl(196,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-1g" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(210,78%,25%)"/><stop offset="1" stop-color="hsl(210,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-1h" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(224,78%,25%)"/><stop offset="1" stop-color="hsl(224,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-1i" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(238,78%,25%)"/><stop offset="1" stop-color="hsl(238,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-1j" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(246,78%,25%)"/><stop offset="1" stop-color="hsl(246,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-1k" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(252,78%,25%)"/><stop offset="1" stop-color="hsl(252,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-1l" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(280,78%,25%)"/><stop offset="1" stop-color="hsl(280,58%,55%)"/></linearGradient>
+</defs>
+<rect width="900" height="500" fill="#ffffff"/>
+<g stroke="#d9dfe8" stroke-width="1">
+<line x1="220" y1="36" x2="220" y2="462"/><line x1="380" y1="36" x2="380" y2="462"/><line x1="540" y1="36" x2="540" y2="462"/><line x1="700" y1="36" x2="700" y2="462"/><line x1="860" y1="36" x2="860" y2="462"/>
+</g>
+<g font-size="13" fill="#4a5568" text-anchor="middle">
+<text x="220" y="482">0%</text><text x="380" y="482">25%</text><text x="540" y="482">50%</text><text x="700" y="482">75%</text><text x="860" y="482">100%</text>
+</g>
+<line x1="252" y1="30" x2="252" y2="462" stroke="#a51f22" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="258" y="26" font-size="12" fill="#a51f22">研究者アンケートの中央値 5%（2023）</text>
+<g font-size="13" fill="#1c2330" text-anchor="end">
+<text x="210" y="60">Yampolskiy</text><text x="210" y="90">Yudkowsky</text><text x="210" y="120">Leike</text><text x="210" y="150">Kokotajlo</text><text x="210" y="180">Shear</text><text x="210" y="210">Christiano</text><text x="210" y="240">Musk</text><text x="210" y="270">Amodei</text><text x="210" y="300">Bengio</text><text x="210" y="330">Hinton</text><text x="210" y="360">Lina Khan</text><text x="210" y="390">Buterin</text><text x="210" y="420">Hubinger</text><text x="210" y="450">LeCun</text>
+</g>
+<rect x="220" y="106" width="64" height="18" fill="hsl(28,28%,85%)"/>
+<rect x="220" y="166" width="32" height="18" fill="hsl(140,28%,85%)"/>
+<rect x="220" y="226" width="64" height="18" fill="hsl(196,28%,85%)"/>
+<rect x="220" y="256" width="64" height="18" fill="hsl(210,28%,85%)"/>
+<rect x="220" y="316" width="64" height="18" fill="hsl(224,28%,85%)"/>
+<rect x="220" y="46" width="639.4" height="18" fill="url(#g-r01-1a)"/>
+<rect x="220" y="76" width="608" height="18" fill="url(#g-r01-1b)"/>
+<rect x="284" y="106" width="512" height="18" fill="url(#g-r01-1c)"/>
+<rect x="220" y="136" width="448" height="18" fill="url(#g-r01-1d)"/>
+<rect x="252" y="166" width="288" height="18" fill="url(#g-r01-1e)"/>
+<rect x="220" y="196" width="320" height="18" fill="url(#g-r01-1e)"/>
+<rect x="284" y="226" width="128" height="18" fill="url(#g-r01-1f)"/>
+<rect x="284" y="256" width="96" height="18" fill="url(#g-r01-1g)"/>
+<rect x="220" y="286" width="128" height="18" fill="url(#g-r01-1h)"/>
+<rect x="284" y="316" width="64" height="18" fill="url(#g-r01-1h)"/>
+<rect x="220" y="346" width="96" height="18" fill="url(#g-r01-1i)"/>
+<rect x="220" y="376" width="76.8" height="18" fill="url(#g-r01-1j)"/>
+<rect x="220" y="406" width="64" height="18" fill="url(#g-r01-1k)"/>
+<rect x="220" y="436" width="2" height="18" fill="url(#g-r01-1l)"/>
+<g font-size="12.5" fill="#1c2330">
+<text x="800" y="60" fill="#ffffff" font-weight="700">99.9% 以上</text>
+<text x="770" y="90" fill="#ffffff" font-weight="700">95% 超</text>
+<text x="802" y="120">10〜90%</text>
+<text x="674" y="150">70%</text>
+<text x="546" y="180">5〜50%</text>
+<text x="546" y="210">50%</text>
+<text x="418" y="240">10〜30%</text>
+<text x="386" y="270">10〜25%</text>
+<text x="354" y="300">20%</text>
+<text x="354" y="330">10〜20%</text>
+<text x="322" y="360">約 15%</text>
+<text x="303" y="390">12%</text>
+<text x="290" y="420">10% 超（10年以内）</text>
+<text x="228" y="450">0.01% 未満</text>
+</g>
+</svg>
+<figcaption>色は値の上限で決めた。0% が紫、100% が赤で、その間は虹色の順に変わる。濃い部分: 本人が挙げた値、または幅のある見積もりの範囲。薄い部分: 範囲の下限までの部分。数値を出していない Altman と Hassabis は載せていない。</figcaption>
+</figure>
+<div class="tablewrap"><table>
+<thead><tr><th>人物</th><th>値</th><th>時期</th><th>出典・備考</th></tr></thead>
+<tbody>
+<tr><td>Roman Yampolskiy</td><td class="nowrap">99.9% 以上</td><td class="nowrap">2024</td><td>Wikipedia の表（Business Insider を出典とする）</td></tr>
+<tr><td>Eliezer Yudkowsky</td><td class="nowrap">95% 超</td><td class="nowrap">2023</td><td>Wikipedia の表（Fast Company を出典とする）</td></tr>
+<tr><td>Jan Leike</td><td class="nowrap">10〜90%</td><td class="nowrap">2023</td><td>Wikipedia の表</td></tr>
+<tr><td>Daniel Kokotajlo（元 OpenAI）</td><td class="nowrap">70%</td><td class="nowrap">2026-09</td><td><a href="https://gizmodo.com/pdoom-is-just-vibes-masquerading-as-science-2000812009">Gizmodo</a></td></tr>
+<tr><td>Emmett Shear</td><td class="nowrap">5〜50%</td><td class="nowrap">2026-09</td><td>同上</td></tr>
+<tr><td>Paul Christiano</td><td class="nowrap">50%</td><td class="nowrap">2023</td><td>Wikipedia の表（Independent を出典とする）</td></tr>
+<tr><td>Elon Musk</td><td class="nowrap">10〜30%</td><td class="nowrap">2024</td><td>Wikipedia の表（Business Insider を出典とする）</td></tr>
+<tr><td>Dario Amodei（Anthropic）</td><td class="nowrap">10〜25%</td><td class="nowrap">2025</td><td>Wikipedia の表（Axios 2025-09-17 を出典とする）</td></tr>
+<tr><td>Yoshua Bengio</td><td class="nowrap">20%</td><td class="nowrap">2023</td><td>Wikipedia の表（ABC を出典とする）</td></tr>
+<tr><td>Geoffrey Hinton</td><td class="nowrap">10〜20%</td><td class="nowrap">2024 / 2026-09</td><td>2026-09 には BBC Newsnight で 10% と発言（<a href="https://futura-sciences.com/en/10-is-not-unreasonable-an-ai-pioneer-warns-of-extinction-risk_39612">Futura-Sciences</a>）</td></tr>
+<tr><td>Lina Khan（元 FTC 委員長）</td><td class="nowrap">約 15%</td><td class="nowrap">2023</td><td>Wikipedia の表（NYT を出典とする）</td></tr>
+<tr><td>Vitalik Buterin</td><td class="nowrap">12%</td><td class="nowrap">2025</td><td>Wikipedia の表</td></tr>
+<tr><td>Evan Hubinger（Anthropic）</td><td class="nowrap">10年以内に 10% 超</td><td class="nowrap">2026-09</td><td><a href="https://gizmodo.com/pdoom-is-just-vibes-masquerading-as-science-2000812009">Gizmodo</a></td></tr>
+<tr><td>Yann LeCun</td><td class="nowrap">0.01% 未満</td><td class="nowrap">2024</td><td>Wikipedia の表（TechRadar を出典とする）</td></tr>
+<tr><td>Sam Altman</td><td class="nowrap">数値なし</td><td class="nowrap">2025〜2026</td><td>「定量化できない」という立場（Gizmodo）</td></tr>
+<tr><td>Demis Hassabis</td><td class="nowrap">数値なし</td><td class="nowrap">2024</td><td>0 ではないと述べる（Wikipedia の表）</td></tr>
+</tbody></table></div>
+<h2>研究者アンケート</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>調査</th><th>結果</th><th>出典</th></tr></thead>
+<tbody>
+<tr><td>AI Impacts 2023（2,778 人）</td><td>人類の絶滅または恒久的な無力化: 中央値 5%・平均 16.2%。「制御を失う」という聞き方では中央値 10%。回答者の 57.8% が「極めて悪い結果」に 5% 以上を付けた</td><td><a href="https://blog.aiimpacts.org/p/2023-ai-survey-of-2778-six-things">AI Impacts blog</a></td></tr>
+<tr><td>AI Impacts 2022（NeurIPS・ICML の論文著者が対象）</td><td>極めて悪い結果（絶滅など）: 中央値 5%。人間が制御できずに絶滅: 中央値 10%</td><td><a href="https://aiimpacts.org/2022-expert-survey-on-progress-in-ai/">AI Impacts</a></td></tr>
+<tr><td>AI Impacts 2024（1,580 人）</td><td>数値は未確認（PDF が公開されていることのみ確認）</td><td><a href="https://aiimpacts.org/wp-content/uploads/2026/09/ESPAI2024.pdf">PDF</a></td></tr>
+</tbody></table></div>
+</section>
+
+<section class="ch03" id="ch03">
+<h1>なぜ値が分かれるか</h1>
+<p>同じ AI を見ていても、0.01% から 99.9% まで値が開く。その理由を、3 枚の図で整理する。図は、YouTube の対談<a href="https://youtu.be/sCLvBXL0tdw">「シンギュラリティサロン＆AGI Hubコラボ第２弾（その１）～『知能爆発』とは何か？bioshokさんの書籍発刊～AGIピル・AI脅威論・トランスヒューマニズム」</a>（チャンネル: SingularitySalon）で示されたスライドによる。以下の論者の割り当てと読み方は、筆者の整理である。</p>
+
+<h2>未来図：変化の速さ（takeoff）の想定で分かれる</h2>
+<p>スライド「AGI 到来から 10 年後のイメージ」は、立場ごとに 10 年後の世界を描き分けている。</p>
+<div class="tablewrap"><table>
+<thead><tr><th></th><th>AGI ピルの外</th><th>AGI ピル</th><th>ASI ピル（doomer）</th></tr></thead>
+<tbody>
+<tr><td>ラベル</td><td>AI as Normal Technology</td><td>Slow takeoff</td><td>Fast takeoff</td></tr>
+<tr><td>描かれた絵</td><td>緑の多い都市を、自動運転車・ドローン・人型ロボットが行き交う</td><td>宇宙のリング型居住区や巨大構造物、改造された惑星</td><td>地球が割れて燃えている</td></tr>
+<tr><td>世界観</td><td>AI は電気やインターネットと同じ「普通の技術」で、社会は少しずつ変わる</td><td>AI が数年〜十数年かけて賢くなり、文明が宇宙規模へ跳ね上がる</td><td>AI が自分自身を改良して、一気に超知能（ASI）になる。制御できなければ人類は終わる</td></tr>
+<tr><td>近い論者</td><td>Narayanan と Kapoor（論考「AI as Normal Technology」, 2025）、LeCun</td><td>Christiano、Amodei</td><td>Yudkowsky（知能爆発、FOOM）、Yampolskiy</td></tr>
+<tr><td>p(doom)</td><td>ほぼ 0</td><td>10〜50%</td><td>90% 以上</td></tr>
+</tbody></table></div>
+<p>スライドには「ASI ピルの場合：≪10yr」とも書かれている。ASI ピルの立場では、右の破局は 10 年後ではなく、それより<strong>はるかに早く</strong>来る、という意味である。変化がゆっくりなら途中で直せるが、一気に進むなら一発勝負になる。p(doom) の差は、主にこの速さの想定から生まれる。</p>
+
+<h2>思想の地図：何を大切にするかで分かれる</h2>
+<p>スライド「AGI ピル、AI 脅威論、の思想的／政治的地図」は、RadicalxChange の記事<a href="https://www.radicalxchange.org/updates/blog/political-ideologies-for-the-21st-century/">「Political Ideologies for the 21st Century」</a>の三角形を使っている。</p>
+<figure class="chart">
+<svg viewBox="0 0 900 470" role="img" aria-label="3 つの思想の三角形">
+<defs>
+<linearGradient id="g-r01-3a" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(210,78%,25%)"/><stop offset="1" stop-color="hsl(210,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-3b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(30,78%,25%)"/><stop offset="1" stop-color="hsl(30,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-3c" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(140,78%,25%)"/><stop offset="1" stop-color="hsl(140,58%,55%)"/></linearGradient>
+</defs>
+<rect width="900" height="470" fill="#ffffff"/>
+<polygon points="450,90 180,385 720,385" fill="none" stroke="#4a5568" stroke-width="2"/>
+<rect x="320" y="28" width="260" height="62" rx="8" fill="url(#g-r01-3a)"/>
+<text x="450" y="55" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">合成テクノクラシー</text>
+<text x="450" y="78" font-size="12.5" fill="#ffffff" text-anchor="middle">Synthetic technocracy（AI と専門家が統治）</text>
+<rect x="40" y="385" width="280" height="62" rx="8" fill="url(#g-r01-3b)"/>
+<text x="180" y="412" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">企業リバタリアニズム</text>
+<text x="180" y="435" font-size="12.5" fill="#ffffff" text-anchor="middle">Corporate libertarianism（市場に委ねる）</text>
+<rect x="580" y="385" width="280" height="62" rx="8" fill="url(#g-r01-3c)"/>
+<text x="720" y="412" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">デジタル民主主義</text>
+<text x="720" y="435" font-size="12.5" fill="#ffffff" text-anchor="middle">Digital democracy（市民の合意形成）</text>
+<g font-size="13.5" fill="#1c2330">
+<text x="300" y="220" text-anchor="end">普遍主義・経済効率と成長</text>
+<text x="300" y="242" text-anchor="end">能力主義</text>
+<text x="600" y="220">経済的平等・大規模な協調</text>
+<text x="600" y="242" fill="#a51f22" font-weight="700">存亡リスクの軽減</text>
+<text x="450" y="412" text-anchor="middle">分散化</text>
+<text x="450" y="434" text-anchor="middle">権利と自由</text>
+</g>
+</svg>
+<figcaption>辺に書いたのは、両端の思想が共有する価値。「存亡リスクの軽減」を共有するのは、上と右の 2 つだけである。</figcaption>
+</figure>
+<ul>
+<li><strong>合成テクノクラシー</strong>: AGI を本気で信じる「AGI ピル」の側。AI 研究所の幹部や、効果的利他主義（EA）の周辺に多い。p(doom) を高く見積もる AI 安全派もここに入る</li>
+<li><strong>企業リバタリアニズム</strong>: 規制を嫌い、開発の加速を好む。e/acc（効果的加速主義）に近い。脅威論には懐疑的で、トランプ大統領の「HOAX」発言（第 6 章）もこの流れと重なる（筆者の解釈）</li>
+<li><strong>デジタル民主主義</strong>: 台湾の vTaiwan のように、技術を使って市民の熟議を強める立場</li>
+</ul>
+<p>スライドのタイトルが「AGI ピル」と「AI 脅威論」を並べているのは、AGI を信じる人と AI を怖れる人が、実は「AI が世界を変える」という同じ前提に立っていることを示すためだと読める。</p>
+
+<h2>知的系譜：脅威論はトランスヒューマニズムから生まれた</h2>
+<p>スライド「その知的系譜はトランスヒューマニズムにある」は、丸山隆一氏の図「現代の AGI リスク論に至る 5 つの流れ」（<a href="https://researchmap.jp/rmaruy/published_works">researchmap</a>）を引用している。年は図の位置と筆者の記憶によるもので、確かめていない。</p>
+<div class="tablewrap"><table>
+<thead><tr><th>#</th><th>流れ</th><th>図にある主な出来事</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>トランスヒューマニストによる AGI 脅威論</td><td>MIRI 設立（2000 年、当初は SIAI）、LessWrong 開始（前身は Overcoming Bias）、Bostrom『Superintelligence』（2014 年）</td></tr>
+<tr><td>2</td><td>科学者・哲学者と篤志家による x-risk 論</td><td>FHI、CSER、FLI の各設立、アシロマ AI 原則（2017 年）、FLI の AI 開発一時停止の公開書簡（2023 年）</td></tr>
+<tr><td>3</td><td>効果的利他主義（EA）</td><td>Giving What We Can、80,000 Hours、Open Philanthropy の各設立、Ord『The Precipice』（2020 年）、Tallinn 氏の Survival and Flourishing Fund</td></tr>
+<tr><td>4</td><td>AGI 企業と、技術的な AI 安全性に取り組む非営利団体</td><td>OpenAI 設立（2015 年）、ARC 設立、Anthropic 創業（2021 年）、CAIS 設立</td></tr>
+<tr><td>5</td><td>政府との連携</td><td>英国・米国の AISI、英国 ARIA の Safeguarded AI</td></tr>
+</tbody></table></div>
+<p>5 つの流れが合流して「現代の AGI リスク論」になる。人間を技術で超えようとする思想の内側から脅威論が生まれ、それが学術、資金、企業、政府へと、組織と予算を持つ制度に育っていった。批判する側から見れば、「AI を怖れる人と AI を作る人は同じ共同体から出てきた」ことの証拠になる（第 5 章の Gizmodo・Gebru の批判）。</p>
+</section>
+
+<section class="ch04" id="ch04">
+<h1>滅亡論と反対論</h1>
+<p>「AI で人類は滅亡しうる」という主張と、それへの反対論を、互いの反論とあわせて並べる。論点の整理は筆者による。代表的な論者は一般に知られている範囲で挙げており、個々の発言の出典までは確かめていない。</p>
+
+<h2>滅亡論の主張と、それへの反論</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>論点</th><th>滅亡論の主張</th><th>反対論からの反論</th><th>滅亡論からの再反論</th></tr></thead>
+<tbody>
+<tr><td>アラインメント問題</td><td>AI の目標を人間の意図と正確に一致させる方法がない。指示の抜け穴を突く「仕様ゲーミング」は、すでに実験で何度も確かめられている（Yudkowsky、Russell）</td><td>今の大規模言語モデルは、人間のフィードバックを使った学習（RLHF）などで、おおむね意図どおりに振る舞う。手法は年々よくなっている</td><td>AI が人間より賢くなると、人間には正しく振る舞っているかを確かめられない。訓練中だけ従うふりをする振る舞いも、研究で報告されている</td></tr>
+<tr><td>道具的収束</td><td>どんな目標を与えても、達成のために「資源を集める」「止められないようにする」ことが役に立つ。だから目標が何であれ、人間と衝突しうる（Omohundro、Bostrom）</td><td>AI に欲望や生存本能はない。人間が作った道具にすぎない（LeCun）</td><td>本能はなくても、目標を追いかけるエージェントとして AI を作っている以上、同じ理屈が働く</td></tr>
+<tr><td>知能爆発</td><td>AI が AI の研究を担うようになると、自己改良が加速して一気に超知能に達する（Fast takeoff）</td><td>計算資源・電力・データ・実験という物理的な制約があり、一気には進まない。AI も普通の技術と同じく、ゆっくり社会に広がる（Narayanan と Kapoor）</td><td>ソフトウェアの改良は物理的な制約より速い。研究の自動化は、すでに始まっている</td></tr>
+<tr><td>やり直しがきかない</td><td>人間を超える AI の制御に一度失敗すれば、取り返しがつかない。試行錯誤で学ぶという、これまでのやり方が使えない</td><td>変化はゆっくり進むので、小さな失敗から学びながら直していける（Slow takeoff）</td><td>決定的な最初の失敗が、そのまま最後の失敗になりうる</td></tr>
+<tr><td>開発競争</td><td>企業間・米中間の競争で、安全より速さが優先される</td><td>AISI などの国際的な枠組みや規制で管理できる</td><td>米国大統領が警告を「HOAX」と呼ぶ（第 6 章）など、現実は加速の方向に進んでいる</td></tr>
+<tr><td>悪用</td><td>AI によって、生物兵器やサイバー攻撃の敷居が下がる</td><td>危険な情報はもともと手に入るもので、既存の対策で防げる</td><td>AI は情報を与えるだけでなく、手順を一つずつ手助けする。モデルの能力が上がるほど、敷居は下がる</td></tr>
+</tbody></table></div>
+
+<h2>反対論の主張と、それへの反論</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>論点</th><th>反対論の主張</th><th>滅亡論からの反論</th></tr></thead>
+<tbody>
+<tr><td>確率に根拠がない</td><td>p(doom) は主観の数字で、科学を装った雰囲気にすぎない（Gizmodo）</td><td>正確に測れなくても、起きたときの被害が人類全体に及ぶ。10% でもあれば、備えるのに十分な理由になる</td></tr>
+<tr><td>目の前の害から目をそらす</td><td>偏見、雇用、権力の集中、監視といった今起きている害への注意が、遠い終末の話に奪われる（Gebru）</td><td>今の害への対策と、将来のリスクへの対策は両立する。どちらも AI 企業への監督強化という同じ方向を向いている</td></tr>
+<tr><td>企業の宣伝</td><td>「自社の AI はそれほど強力だ」という宣伝であり、規制で新規参入を阻む狙い（規制の囲い込み）もある。上場前の話題づくりだという見方もある（Gizmodo）</td><td>Hinton は Google を辞めてから警告しており、Bengio も企業に属していない。企業の外の研究者も同じことを言っている</td></tr>
+<tr><td>終末予言はいつも外れる</td><td>2000 年問題や人口爆発など、これまでの終末予言は外れてきた</td><td>2000 年問題は、対策をしたから大事に至らなかった。核兵器のように、新しい種類のリスクが現実になった例もある</td></tr>
+<tr><td>賢くても世界は支配できない</td><td>知能が高くても、体も工場も持たない AI が物理世界を支配することはできない</td><td>インフラはネットワークでつながっており、人間を説得したり雇ったりして動かすこともできる。ロボットの普及も進んでいる</td></tr>
+<tr><td>電源を切ればよい</td><td>危なくなったら人間が止めればよい</td><td>賢い AI は止められる前に自分を複製したり、危険だと気づかせないように振る舞ったりしうる。社会が AI に頼りきっていれば、止めること自体が難しい</td></tr>
+</tbody></table></div>
+<div class="callout"><strong>対立の芯:</strong> 多くの論点は、第 3 章の「変化の速さ」と「人間が途中で直せるか」に行き着く。ゆっくり進むなら反対論の言い分が強く、一気に進むなら滅亡論の言い分が強い。どちらの速さになるかを今の時点で確かめる手段がないことが、議論を決着させない。</div>
+</section>
+
+<section class="ch05" id="ch05">
+<h1>ニュースの流れ</h1>
+<p>2023 年の警告ラッシュ、2025 年の超知能禁止声明を経て、2026 年 9 月に AI 企業の内部者が相次いで警告し、議論が再燃した。</p>
+<div class="tablewrap"><table>
+<thead><tr><th>日付</th><th>媒体・内容</th><th>リンク</th></tr></thead>
+<tbody>
+<tr><td class="nowrap">2023-03-29</td><td>TIME に Yudkowsky が寄稿。「AI 開発の一時停止では足りない。すべて止めるべきだ」</td><td><a href="https://x.com/TIME/status/1642158119936507904">TIME の投稿</a>（記事本体の URL は未確認）</td></tr>
+<tr><td class="nowrap">2023-05-01</td><td>CNN: Hinton が Google を退社し、AI の危険性を警告</td><td><a href="https://www.cnn.com/2023/05/01/tech/geoffrey-hinton-leaves-google-ai-fears/index.html">CNN</a></td></tr>
+<tr><td class="nowrap">2023-05</td><td>CAIS が声明を発表。「AI による絶滅リスクの軽減を、パンデミックや核戦争と並ぶ世界的な優先事項に」</td><td><a href="https://safe.ai/work/press-release-ai-risk">CAIS</a></td></tr>
+<tr><td class="nowrap">2025-10-22</td><td>FLI の声明に 850 人超が署名し、超知能の開発禁止を求める（Hinton・Bengio、ノーベル賞受賞者 5 人ほか）</td><td><a href="https://time.com/7327409/ai-agi-superintelligent-open-letter/">TIME</a> / <a href="https://www.cnbc.com/2025/10/22/800-petition-signatures-apple-steve-wozniak-and-virgin-richard-branson-superintelligence-race.html">CNBC</a></td></tr>
+<tr><td class="nowrap">2026-09-09</td><td>Axios: AI が人類を滅ぼすとしたら、どのように起こるか（本文は未取得）</td><td><a href="https://www.axios.com/2026/09/09/ai-doom-pdoom-kill-all-humans-anthropic">Axios</a></td></tr>
+<tr><td class="nowrap">2026-09-14</td><td>AI 企業の内部者が相次いで絶滅リスクを警告し、議論が再燃（AP 系）</td><td><a href="https://www.fox8live.com/2026/09/14/new-warnings-about-risks-ai-humanity-revive-long-running-debate/">Fox8</a></td></tr>
+<tr><td class="nowrap">2026-09-16</td><td>Gizmodo: 「p(doom) は科学を装った雰囲気にすぎない」。OpenAI・Anthropic の上場前の宣伝だという見方も紹介</td><td><a href="https://gizmodo.com/pdoom-is-just-vibes-masquerading-as-science-2000812009">Gizmodo</a></td></tr>
+<tr><td class="nowrap">2026-10-01</td><td>Democracy Now: Gebru「本当の存亡リスクは、監督を逃れる AI 企業の CEO たちだ」（中身は未確認）</td><td><a href="https://www.democracynow.org/2026/10/1/timnit_gebru_ai">Democracy Now</a></td></tr>
+</tbody></table></div>
+</section>
+
+<section class="ch06" id="ch06">
+<h1>国家元首・首脳の反応</h1>
+<h2>トランプ米大統領：「HOAX（でっちあげ）」</h2>
+<p>2026-09-14、AI のリスクへの警告を「HOAX」と呼んだ。「地球温暖化詐欺」やロシア疑惑と同じ類いの「病んだ陰謀」だとし、AI に必要な歯止めは「強く賢い大統領」だけだと主張した。業界の内部から絶滅リスクの警告が相次ぎ、規制を求める声が強まっていた最中の発言である。</p>
+<ul>
+<li><a href="https://www.forbes.com/sites/conormurray/2026/09/14/trump-says-calls-for-ai-regulation-are-a-hoax-compares-it-to-russia-impeachment-scams/">Forbes</a> / <a href="https://www.france24.com/en/technology/20260915-trump-calls-concerns-over-rogue-ai-a-hoax-promoted-by-a-sick-conspiracy">France 24</a> / <a href="https://www.cnn.com/2026/09/14/politics/trump-vance-ai-alarms">CNN</a>（本文は未取得）</li>
+<li>Truth Social の投稿（アーカイブ）: <a href="https://www.trumpstruth.org/statuses/41727">trumpstruth.org</a></li>
+<li>関連: <a href="https://abcnews.com/Politics/openai-ceo-calls-ai-pacing-trump-insists-downplaying/story?id=136416814">ABC</a>（OpenAI の CEO が開発ペースの減速を求める一方で、トランプ氏はリスクを軽く扱う構図）</li>
+</ul>
+<h2>ほかの首脳</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>人物</th><th>発言</th><th>日付</th><th>出典</th></tr></thead>
+<tbody>
+<tr><td>スナク英首相（当時）</td><td>CAIS の絶滅リスク声明について「非常に注意深く検討している」。同年 10 月には、超知能によって人類が制御を失う可能性に触れつつ「眠れなくなるほどではない」と述べた</td><td class="nowrap">2023-05 / 2023-10</td><td><a href="https://www.itv.com/news/2023-05-31/sunak-looking-very-carefully-at-risk-of-extinction-posed-by-ai">ITV</a> / <a href="https://www.gbnews.com/politics/ai-news-rishi-sunak-speech-threats">GB News</a></td></tr>
+<tr><td>バイデン米大統領（当時）</td><td>「大きな可能性とリスク」があると発言し、AI の安全に関する大統領令に署名した。存亡リスクに明言した発言は未確認</td><td class="nowrap">2023</td><td><a href="https://www.nbcnews.com/politics/joe-biden/biden-meets-ai-experts-effort-manage-risks-rcna90136">NBC</a></td></tr>
+<tr><td>ゼレンスキー宇大統領</td><td>国連で「史上最も破壊的な軍拡競争」と述べ、AI 兵器の国際ルールを求めた</td><td class="nowrap">2025-09-24</td><td><a href="https://www.npr.org/2025/09/24/nx-s1-5552206/ukraine-zelenskyy-un-general-assembly-trump">NPR</a></td></tr>
+<tr><td>習近平中国国家主席</td><td>AI が人間の制御から外れないようにする必要があると発言（年は未確認）。中国の大使は、人類の破滅を避けるための米中協力を主張している</td><td class="nowrap">未確認</td><td><a href="https://www.newsweek.com/exclusive-china-urges-us-cooperation-on-ai-to-avoid-human-extinction-12506809">Newsweek</a></td></tr>
+<tr><td>マクロン仏大統領</td><td>機械に制御を奪われないための倫理的な限界を設けるべきだと発言。人類滅亡に明言した発言は未確認</td><td class="nowrap">未確認</td><td><a href="https://www.democrata.es/en/politics/macron-warns-of-the-crisis-of-democracies-and-calls-to-rehumanize-ai-and-social-networks/">Demócrata</a></td></tr>
+<tr><td>プーチン露大統領</td><td>「AI の分野で主導権を握る者が世界の支配者になる」。存亡リスクに明言した発言は未確認</td><td class="nowrap">2017</td><td><a href="https://fortune.com/2017/09/04/ai-artificial-intelligence-putin-rule-world">Fortune</a></td></tr>
+<tr><td>モディ印首相</td><td>「未来の鍵を握るのは機械ではなく人類だ」（パリ AI アクションサミット）</td><td class="nowrap">2025-02-11</td><td><a href="https://www.newsonair.gov.in/ai-can-transform-millions-of-lives-by-improving-health-education-agriculture-pm-modi">News On AIR</a></td></tr>
+<tr><td>ミレイ（アルゼンチン大統領）</td><td>該当する発言は見つからなかった</td><td class="nowrap">-</td><td>-</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="ch07" id="ch07">
+<h1>日本の論調</h1>
+<p>日本では存亡リスクの議論自体が少なく、2026 年 9 月の海外での警告を受けて、ようやく大手メディアが報じ始めた段階にある。</p>
+<h2>研究者・経営者</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>人物</th><th>内容</th><th>日付</th><th>出典</th></tr></thead>
+<tbody>
+<tr><td>山川宏（東大）</td><td>AGI から超知能へ進むにつれ、存亡リスクは現実の脅威になる。欧米と違って日本ではほとんど議論されない「部屋の中の象」だと指摘し、「シンギュラリティ後の共存学」を提唱</td><td class="nowrap">2025-02-25</td><td><a href="https://www.sbbit.jp/article/sp/155669">ビジネス+IT</a></td></tr>
+<tr><td>孫正義（ソフトバンク）</td><td>「人間が頂点の生命体である時代は終わる」。AI の自己増殖は止めようとしても止められない、と述べた。ただし滅亡論ではなく、人間が AI で能力を高めて生きる道を示す立場で、第 3 章の slow takeoff の世界観に近い</td><td class="nowrap">2026-07-14</td><td><a href="https://www.itmedia.co.jp/news/articles/2607/14/news115.html">ITmedia</a></td></tr>
+<tr><td>bioshok</td><td>「知能爆発」をテーマにした書籍の刊行に合わせ、AGI ピル・AI 脅威論・トランスヒューマニズムを論じた対談（第 3 章の図の出典）</td><td class="nowrap">未確認</td><td><a href="https://youtu.be/sCLvBXL0tdw">YouTube（SingularitySalon）</a></td></tr>
+<tr><td>松尾豊・落合陽一・松田卓也</td><td>2023 年以降に p(doom) や存亡リスクについて述べた発言は、検索では見つからなかった。シンギュラリティサロンは松田氏が主宰する勉強会と記憶している（確かめていない）</td><td class="nowrap">-</td><td>-</td></tr>
+</tbody></table></div>
+<h2>政府・首相</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>発言者・文書</th><th>内容</th><th>日付</th><th>出典</th></tr></thead>
+<tbody>
+<tr><td>岸田首相（OECD 閣僚理事会）</td><td>安全・安心で信頼できる AI の実現に向け、志を同じくする国々との連携を呼びかけた</td><td class="nowrap">2024-05 頃（推定）</td><td><a href="https://www.jiji.com/jc/article?k=2024050200951&amp;g=int">時事通信</a></td></tr>
+<tr><td>高市首相（国連総会演説）</td><td>高性能 AI のリスクへの対処で同志国との協力を訴え、日本で AI サミットを早期に開くことを提唱</td><td class="nowrap">2026-09-23 頃（推定）</td><td><a href="https://www.sakigake.jp/news/article/20260923CO0038/">秋田魁新報</a></td></tr>
+<tr><td>第 2 期 AI 基本計画</td><td>高性能 AI を安全性の評価に活用しつつ、サイバー攻撃などへの悪用に備える</td><td class="nowrap">2026-07 頃（推定）</td><td><a href="https://www.nikkei.com/article/DGXZQOUA0730O0X00C26A7000000/">日本経済新聞</a></td></tr>
+<tr><td>日本 AISI</td><td>2024-02-14 設立。2025 年版の年次レポートを公開</td><td class="nowrap">2026-04-28</td><td><a href="https://aisi.go.jp/output/output_information/260428/">AISI</a></td></tr>
+</tbody></table></div>
+<p>「人類滅亡」「存亡リスク」という言葉を使った首相発言は見つからなかった。どの発言も「リスクの最小化」「信頼できる AI」という枠組みで語られている。</p>
+<h2>ニュース・解説記事</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>日付</th><th>媒体・タイトル</th><th>要点</th></tr></thead>
+<tbody>
+<tr><td class="nowrap">2026-09-11（推定）</td><td><a href="https://www.zaikei.co.jp/article/20260911/869638.html">財経新聞「元アンソロピックのAI研究者が人類滅亡リスクを警告、米議会で規制論強まる」</a></td><td>米議会で規制を求める議論が強まっていると報じる</td></tr>
+<tr><td class="nowrap">2026-09（推定）</td><td><a href="https://www.businessinsider.jp/article/2609-ai-apocalypse-anthropic-open-ai-how-it-would-happen-experts/">Business Insider Japan「『AIによる人類滅亡』は起こり得るか」</a></td><td>生物兵器・インフラ攻撃・世界戦争といったシナリオを、どこまで現実的か検証</td></tr>
+<tr><td class="nowrap">2026-09-26</td><td><a href="https://news.web.nhk/newsweb/na/nd-20260924de52153">NHK「人類が滅びる？高まるAI脅威論 国内の研究者の見方は」</a></td><td>Anthropic を退社した研究者の警告をきっかけに広がった脅威論を取り上げる</td></tr>
+<tr><td class="nowrap">2026-09-30</td><td><a href="https://forbesjapan.com/articles/detail/105699">Forbes JAPAN「AIが人類を滅ぼす可能性を、私たちは実際どれほど懸念すべきか」</a></td><td>滅亡シナリオより、雇用・金融・情報の質といった目の前の課題を優先すべきだと論じる</td></tr>
+<tr><td class="nowrap">未確認</td><td><a href="https://forbesjapan.com/articles/detail/104736">Forbes JAPAN「飛び交う『AIによる人類滅亡説』」</a></td><td>現実に起こりうる脅威の姿を論じる</td></tr>
+<tr><td class="nowrap">2025-06-17</td><td><a href="https://jobirun.com/what-is-p-doom-ai-existential-risk/">JOBIRUN「AI開発者が考える『p(doom)』とは何か？」</a></td><td>p(doom) を日本語で解説した記事</td></tr>
+<tr><td class="nowrap">未確認</td><td><a href="https://qiita.com/sukimaengineer/items/3284bcf98283eb4ec3f1">Qiita「P(doom)徹底討論を読んで怖くなったので…」</a></td><td>個人による考察記事</td></tr>
+<tr><td class="nowrap">未確認</td><td><a href="https://gdep-sol.co.jp/newtech-report/no112/">GDEP ソリューションズ「AIが人類を滅亡させる確率は42％」</a></td><td>「Hinton 99%」と書いているが、第 2 章の値と大きく食い違う。一次出典は未確認</td></tr>
+</tbody></table></div>
+<p>日経・朝日・読売・WIRED.jp などでは、p(doom) を正面から扱った記事は見つからなかった。日本語の解説は、ブログや企業のコラムが中心である。</p>
+</section>
+
+<section class="ch08" id="ch08">
+<h1>まとめ</h1>
+<ul>
+<li><strong>値の幅</strong>: 0.01% 未満（LeCun）から 99.9% 以上（Yampolskiy）まで開いている。研究者アンケートの中央値は 5% 前後で、AI 企業のトップは 10〜25% あたりに集まる</li>
+<li><strong>分かれる理由</strong>: 主に変化の速さ（takeoff）の想定による。その背後には、何を大切にするかという思想の違いと、トランスヒューマニズムから続く共同体の系譜がある</li>
+<li><strong>論争</strong>: 滅亡論は「制御できない・やり直しがきかない」を軸にし、反対論は「根拠がない・目の前の害が先・企業の宣伝」を軸にする。双方の反論は、結局「変化の速さ」で行き違う</li>
+<li><strong>世界の反応</strong>: 英国は存亡リスクに正面から言及し、米国のトランプ大統領は「HOAX」と全面的に否定した。多くの首脳は、軍事利用や制御の問題には触れるが、絶滅には明言しない</li>
+<li><strong>日本</strong>: 政府は「信頼できる AI」の枠組みで語り、存亡リスクという言葉は使わない。議論は研究者・経営者・コミュニティの一部にとどまる</li>
+</ul>
+<h2>残っている確認事項</h2>
+<ul>
+<li>各人物の p(doom) の一次出典（現状は Wikipedia の表に頼っている）</li>
+<li>AI Impacts 2024 年調査の数値</li>
+<li>Axios・CNN の記事本文</li>
+<li>第 3 章の知的系譜の年表の各年</li>
+<li>YouTube 対談の公開日・登壇者と、松田卓也氏の発言の有無</li>
+</ul>
+</section>
+
+<a class="home" href="../" title="親サイト">⌂</a>
+</div>
+<footer><a class="home" href="../" title="親サイト">⌂</a></footer>
+</body>
+</html>
