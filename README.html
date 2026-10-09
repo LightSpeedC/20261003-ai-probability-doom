@@ -25,7 +25,8 @@ body { margin: 0; background: #ffffff; color: var(--ink, #1c2330); font-family: 
 .titlebar .lead, .titlebar .date { color: #dfe7f7; background: transparent; margin: 4px 0; font-size: 0.95em; }
 .wrap { padding: 0 30px; }
 a { color: var(--link, #1a4fa0); background: transparent; }
-a.home { display: inline-block; margin-top: 16px; padding: 2px 12px; border-radius: 6px; background: linear-gradient(100deg, var(--navy1, #12224d), var(--navy2, #2f5fbf)); color: #fff; text-decoration: none; font-weight: 700; }
+.wrap > a.home:first-child { margin-top: 18px; }
+a.home { display: inline-block;padding: 2px 12px; border-radius: 6px; background: linear-gradient(100deg, var(--navy1, #12224d), var(--navy2, #2f5fbf)); color: #fff; text-decoration: none; font-weight: 700; }
 .toc ol { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; counter-reset: tocnum; }
 .toc ol li { counter-increment: tocnum; }
 .toc ol a { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; white-space: normal; width: 310px; max-width: 100%; padding: 6px 12px; border-radius: 6px; background: linear-gradient(100deg, var(--accent, #12224d), var(--accent2, #2f5fbf)); color: #fff; text-decoration: none; font-weight: 700; box-sizing: border-box; }
@@ -377,7 +378,6 @@ footer { padding: 18px 30px 30px; }
 </ul>
 </section>
 
-<a class="home" href="../" title="親サイト">⌂</a>
 </div>
 <footer><a class="home" href="../" title="親サイト">⌂</a></footer>
 </body>
