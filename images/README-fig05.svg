@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 410" width="900" height="410" role="img" aria-label="現代の AGI リスク論に至る 5 つの流れの年表">
+<defs>
+<linearGradient id="i1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(280,78%,25%)"/><stop offset="1" stop-color="hsl(280,58%,55%)"/></linearGradient>
+<linearGradient id="i2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(210,78%,25%)"/><stop offset="1" stop-color="hsl(210,58%,55%)"/></linearGradient>
+<linearGradient id="i3" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(140,78%,25%)"/><stop offset="1" stop-color="hsl(140,58%,55%)"/></linearGradient>
+<linearGradient id="i4" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(70,78%,25%)"/><stop offset="1" stop-color="hsl(70,58%,55%)"/></linearGradient>
+<linearGradient id="i5" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(0,78%,25%)"/><stop offset="1" stop-color="hsl(0,58%,55%)"/></linearGradient>
+</defs>
+	<rect width="100%" height="100%" fill="#ffffff"/>
+<rect width="900" height="410" fill="#ffffff"/>
+<g stroke="#d9dfe8" stroke-width="1">
+<line x1="120" y1="20" x2="120" y2="375"/><line x1="260" y1="20" x2="260" y2="375"/><line x1="400" y1="20" x2="400" y2="375"/><line x1="540" y1="20" x2="540" y2="375"/><line x1="680" y1="20" x2="680" y2="375"/><line x1="820" y1="20" x2="820" y2="375"/>
+</g>
+<line x1="100" y1="375" x2="870" y2="375" stroke="#4a5568" stroke-width="2"/>
+<g font-size="13" fill="#4a5568" text-anchor="middle">
+<text x="120" y="395">2000</text><text x="260" y="395">2005</text><text x="400" y="395">2010</text><text x="540" y="395">2015</text><text x="680" y="395">2020</text><text x="820" y="395">2025</text>
+</g>
+<rect x="764" y="40" width="96" height="22" rx="5" fill="url(#i5)"/>
+<rect x="540" y="110" width="320" height="22" rx="5" fill="url(#i4)"/>
+<rect x="372" y="180" width="488" height="22" rx="5" fill="url(#i3)"/>
+<rect x="260" y="250" width="600" height="22" rx="5" fill="url(#i2)"/>
+<rect x="120" y="320" width="740" height="22" rx="5" fill="url(#i1)"/>
+<g font-size="13" font-weight="700">
+<text x="860" y="32" fill="hsl(0,78%,35%)" text-anchor="end">5 政府との連携</text>
+<text x="540" y="102" fill="hsl(70,78%,22%)">4 AGI 企業・技術的安全性</text>
+<text x="372" y="172" fill="hsl(140,78%,25%)">3 効果的利他主義（EA）</text>
+<text x="260" y="242" fill="hsl(210,78%,30%)">2 科学者・哲学者・篤志家の x-risk 論</text>
+<text x="120" y="312" fill="hsl(280,78%,30%)">1 トランスヒューマニストの AGI 脅威論</text>
+</g>
+<g fill="#ffffff" stroke="#1c2330" stroke-width="1.5">
+<circle cx="770" cy="51" r="5"/><circle cx="792" cy="51" r="5"/>
+<circle cx="546" cy="121" r="5"/><circle cx="708" cy="121" r="5"/><circle cx="736" cy="121" r="5"/>
+<circle cx="380" cy="191" r="5"/><circle cx="428" cy="191" r="5"/><circle cx="512" cy="191" r="5"/><circle cx="680" cy="191" r="5"/>
+<circle cx="266" cy="261" r="5"/><circle cx="456" cy="261" r="5"/><circle cx="512" cy="261" r="5"/><circle cx="596" cy="261" r="5"/><circle cx="764" cy="261" r="5"/>
+<circle cx="126" cy="331" r="5"/><circle cx="372" cy="331" r="5"/><circle cx="512" cy="331" r="5"/>
+</g>
+<g font-size="11" fill="#1c2330" text-anchor="middle">
+<text x="781" y="78">AISI・ARIA</text>
+<text x="555" y="148">OpenAI</text><text x="722" y="148">ARC・Anthropic・CAIS</text>
+<text x="375" y="218">GWWC</text><text x="438" y="218">80,000 Hours</text><text x="516" y="218">Open Phil.</text><text x="680" y="218">The Precipice</text>
+<text x="266" y="288">FHI</text><text x="456" y="288">CSER</text><text x="512" y="288">FLI</text><text x="596" y="288">アシロマ原則</text><text x="764" y="288">一時停止書簡</text>
+<text x="136" y="358">MIRI</text><text x="372" y="358">LessWrong</text><text x="512" y="358">Superintelligence</text>
+</g>
+</svg>

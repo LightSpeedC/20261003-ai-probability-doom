@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300" role="img" aria-label="首脳の発言を否定から存亡リスク言及までの物差しに並べた図">
+<defs>
+<linearGradient id="i1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="hsl(210,58%,55%)"/><stop offset="1" stop-color="hsl(0,58%,55%)"/></linearGradient>
+<linearGradient id="i2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(202,78%,25%)"/><stop offset="1" stop-color="hsl(202,58%,55%)"/></linearGradient>
+<linearGradient id="i3" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(151,78%,25%)"/><stop offset="1" stop-color="hsl(151,58%,55%)"/></linearGradient>
+<linearGradient id="i4" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(129,78%,25%)"/><stop offset="1" stop-color="hsl(129,58%,55%)"/></linearGradient>
+<linearGradient id="i5" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(110,78%,25%)"/><stop offset="1" stop-color="hsl(110,58%,55%)"/></linearGradient>
+<linearGradient id="i6" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(70,78%,25%)"/><stop offset="1" stop-color="hsl(70,58%,55%)"/></linearGradient>
+<linearGradient id="i7" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(65,78%,25%)"/><stop offset="1" stop-color="hsl(65,58%,55%)"/></linearGradient>
+<linearGradient id="i8" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(30,78%,25%)"/><stop offset="1" stop-color="hsl(30,58%,55%)"/></linearGradient>
+<linearGradient id="i9" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(11,78%,25%)"/><stop offset="1" stop-color="hsl(11,58%,55%)"/></linearGradient>
+</defs>
+	<rect width="100%" height="100%" fill="#ffffff"/>
+<rect width="900" height="300" fill="#ffffff"/>
+<rect x="60" y="142" width="780" height="16" rx="8" fill="url(#i1)"/>
+<text x="60" y="288" font-size="13" font-weight="700" fill="hsl(210,78%,30%)">← 否定・軽視</text>
+<text x="840" y="288" font-size="13" font-weight="700" fill="hsl(0,78%,35%)" text-anchor="end">存亡リスクに言及 →</text>
+<g stroke="#4a5568" stroke-width="1.5">
+<line x1="90" y1="84" x2="90" y2="150"/><line x1="360" y1="84" x2="360" y2="150"/><line x1="600" y1="84" x2="600" y2="150"/><line x1="800" y1="84" x2="800" y2="150"/>
+<line x1="280" y1="150" x2="280" y2="216"/><line x1="430" y1="150" x2="430" y2="216"/><line x1="580" y1="150" x2="580" y2="216"/><line x1="730" y1="150" x2="730" y2="216"/>
+</g>
+<g fill="#ffffff" stroke="#1c2330" stroke-width="1.5">
+<circle cx="90" cy="150" r="5"/><circle cx="280" cy="150" r="5"/><circle cx="360" cy="150" r="5"/><circle cx="430" cy="150" r="5"/><circle cx="580" cy="150" r="5"/><circle cx="600" cy="150" r="5"/><circle cx="730" cy="150" r="5"/><circle cx="800" cy="150" r="5"/>
+</g>
+<rect x="25" y="40" width="130" height="44" rx="6" fill="url(#i2)"/>
+<rect x="295" y="40" width="130" height="44" rx="6" fill="url(#i4)"/>
+<rect x="535" y="40" width="130" height="44" rx="6" fill="url(#i7)"/>
+<rect x="735" y="40" width="130" height="44" rx="6" fill="url(#i9)"/>
+<rect x="215" y="216" width="130" height="44" rx="6" fill="url(#i3)"/>
+<rect x="365" y="216" width="130" height="44" rx="6" fill="url(#i5)"/>
+<rect x="515" y="216" width="130" height="44" rx="6" fill="url(#i6)"/>
+<rect x="665" y="216" width="130" height="44" rx="6" fill="url(#i8)"/>
+<g fill="#ffffff" text-anchor="middle">
+<text x="90" y="58" font-size="13.5" font-weight="700">トランプ</text><text x="90" y="76" font-size="12">「HOAX」</text>
+<text x="360" y="58" font-size="13.5" font-weight="700">モディ</text><text x="360" y="76" font-size="12">鍵を握るのは人類</text>
+<text x="600" y="58" font-size="13.5" font-weight="700">習近平</text><text x="600" y="76" font-size="12">制御から外さない</text>
+<text x="800" y="58" font-size="13.5" font-weight="700">スナク</text><text x="800" y="76" font-size="12">絶滅リスクを検討</text>
+<text x="280" y="234" font-size="13.5" font-weight="700">プーチン</text><text x="280" y="252" font-size="12">制する者が支配者</text>
+<text x="430" y="234" font-size="13.5" font-weight="700">バイデン</text><text x="430" y="252" font-size="12">可能性とリスク</text>
+<text x="580" y="234" font-size="13.5" font-weight="700">マクロン</text><text x="580" y="252" font-size="12">制御を奪われない</text>
+<text x="730" y="234" font-size="13.5" font-weight="700">ゼレンスキー</text><text x="730" y="252" font-size="12">AI の軍拡に警告</text>
+</g>
+</svg>

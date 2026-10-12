@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" width="900" height="380" role="img" aria-label="3 つの takeoff の能力の伸び方">
+	<rect width="100%" height="100%" fill="#ffffff"/>
+<rect width="900" height="380" fill="#ffffff"/>
+<line x1="80" y1="330" x2="870" y2="330" stroke="#4a5568" stroke-width="2"/>
+<line x1="80" y1="330" x2="80" y2="20" stroke="#4a5568" stroke-width="2"/>
+<line x1="80" y1="230" x2="870" y2="230" stroke="#97a1ae" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="90" y="222" font-size="12.5" fill="#4a5568">人間の水準</text>
+<text x="80" y="352" font-size="13" fill="#4a5568" text-anchor="middle">AGI 到来</text>
+<text x="860" y="352" font-size="13" fill="#4a5568" text-anchor="middle">10 年後</text>
+<text x="470" y="372" font-size="13" fill="#4a5568" text-anchor="middle">時間 →</text>
+<text x="40" y="180" font-size="13" fill="#4a5568" text-anchor="middle" transform="rotate(-90 40 180)">AI の能力 →</text>
+<path d="M80,300 C300,285 600,255 860,215" fill="none" stroke="hsl(200,78%,38%)" stroke-width="4"/>
+<path d="M80,300 C400,285 620,170 860,60" fill="none" stroke="hsl(120,78%,30%)" stroke-width="4"/>
+<path d="M80,300 C190,296 240,285 268,258 C290,225 300,120 308,50" fill="none" stroke="hsl(0,78%,42%)" stroke-width="4"/>
+<line x1="309" y1="42" x2="312" y2="4" stroke="hsl(0,78%,42%)" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 9"/>
+<text x="620" y="290" font-size="14" font-weight="700" fill="hsl(200,78%,30%)">AI as Normal Technology</text>
+<text x="620" y="310" font-size="12" fill="#1c2330">普通の技術として少しずつ</text>
+<text x="690" y="172" font-size="14" font-weight="700" fill="hsl(120,78%,25%)">Slow takeoff</text>
+<text x="690" y="192" font-size="12" fill="#1c2330">数年〜十数年で跳ね上がる</text>
+<text x="335" y="60" font-size="14" font-weight="700" fill="hsl(0,78%,35%)">Fast takeoff</text>
+<text x="335" y="80" font-size="12" fill="#1c2330">自己改良で一気に超知能へ（上限なし）</text>
+<text x="250" y="165" font-size="14" font-weight="700" fill="hsl(0,78%,35%)" text-anchor="end">≪ 10yr</text>
+</svg>

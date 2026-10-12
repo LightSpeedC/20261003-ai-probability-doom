@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" width="900" height="260" role="img" aria-label="2023 年から 2026 年までのニュースの年表">
+<defs>
+<linearGradient id="i1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(0,78%,25%)"/><stop offset="1" stop-color="hsl(0,58%,55%)"/></linearGradient>
+<linearGradient id="i2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(30,78%,25%)"/><stop offset="1" stop-color="hsl(30,58%,55%)"/></linearGradient>
+<linearGradient id="i3" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(280,78%,25%)"/><stop offset="1" stop-color="hsl(280,58%,55%)"/></linearGradient>
+</defs>
+	<rect width="100%" height="100%" fill="#ffffff"/>
+<rect width="900" height="260" fill="#ffffff"/>
+<line x1="40" y1="130" x2="870" y2="130" stroke="#4a5568" stroke-width="3"/>
+<g font-size="13" fill="#4a5568" text-anchor="middle">
+<text x="60" y="150">2023</text><text x="260" y="150">2024</text><text x="460" y="150">2025</text><text x="660" y="150">2026</text>
+</g>
+<g stroke="#4a5568" stroke-width="1.5">
+<line x1="100" y1="130" x2="100" y2="74"/><line x1="137" y1="130" x2="137" y2="175"/><line x1="620" y1="130" x2="620" y2="74"/><line x1="800" y1="130" x2="800" y2="175"/>
+</g>
+<g fill="#ffffff" stroke="#1c2330" stroke-width="1.5">
+<circle cx="100" cy="130" r="6"/><circle cx="137" cy="130" r="6"/><circle cx="620" cy="130" r="6"/><circle cx="800" cy="130" r="6"/>
+</g>
+<rect x="20" y="28" width="250" height="46" rx="6" fill="url(#i1)"/>
+<rect x="40" y="175" width="270" height="50" rx="6" fill="url(#i1)"/>
+<rect x="480" y="28" width="280" height="46" rx="6" fill="url(#i2)"/>
+<rect x="550" y="175" width="330" height="70" rx="6" fill="url(#i3)"/>
+<g font-size="12.5" fill="#ffffff">
+<text x="30" y="47" font-weight="700">2023-03</text><text x="30" y="66">Yudkowsky「すべて止めるべきだ」</text>
+<text x="50" y="194" font-weight="700">2023-05</text><text x="50" y="214">Hinton が Google を退社・CAIS の絶滅声明</text>
+<text x="490" y="47" font-weight="700">2025-10</text><text x="490" y="66">FLI の超知能禁止声明に 850 人超が署名</text>
+<text x="560" y="194" font-weight="700">2026-09〜10</text><text x="560" y="214">AI 企業の内部者が相次いで警告</text><text x="560" y="234">→ トランプ「HOAX」、p(doom) 批判も噴出</text>
+</g>
+</svg>

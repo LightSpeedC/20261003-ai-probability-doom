@@ -43,7 +43,7 @@ td.nowrap { white-space: nowrap; }
 .callout { border-left: 6px solid var(--accent, #12224d); background: linear-gradient(180deg, var(--soft, #f2f5fb), #ffffff); color: var(--ink, #1c2330); padding: 10px 16px; border-radius: 0 8px 8px 0; margin: 14px 0; }
 .callout strong { color: var(--accent, #12224d); background: transparent; }
 .chart { margin: 10px 0; }
-.chart svg { max-width: 100%; height: auto; display: block; }
+.chart svg, .chart img { max-width: 100%; height: auto; display: block; }
 .chart figcaption { color: var(--ink-soft, #4a5568); background: transparent; font-size: 0.9em; }
 footer { padding: 18px 30px 30px; }
 </style>
@@ -52,7 +52,7 @@ footer { padding: 18px 30px 30px; }
 <div class="titlebar"><div class="inner">
 <h1>AI p(doom) 調査</h1>
 <p class="lead">AI が人類の破局をもたらす確率 p(doom)。誰がどう見積もり、なぜ値が分かれ、世界と日本はどう反応しているか</p>
-<p class="date">📅 作成: 2026-10-03 / 更新: 2026-10-06</p>
+<p class="date">📅 作成: 2026-10-03 / 更新: 2026-10-12</p>
 </div></div>
 <div class="wrap">
 <a class="home" href="../" title="親サイト">⌂</a>
@@ -78,6 +78,35 @@ footer { padding: 18px 30px 30px; }
 <li><strong>「doom」の範囲は人によって違う。</strong>絶滅だけを数える人もいれば、人類が将来を自分で決められなくなる事態まで含める人もいる</li>
 <li><strong>期間もそろっていない。</strong>「今世紀中」「10 年以内」「AGI ができたら」など、前提が人ごとに異なる</li>
 </ul>
+<figure class="chart">
+<svg viewBox="0 0 900 260" role="img" aria-label="p(doom) の値が決まるまで">
+<defs>
+<linearGradient id="g-r01-0a" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(280,78%,25%)"/><stop offset="1" stop-color="hsl(280,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-0b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(240,78%,25%)"/><stop offset="1" stop-color="hsl(240,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-0c" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(200,78%,25%)"/><stop offset="1" stop-color="hsl(200,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-0d" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(120,78%,25%)"/><stop offset="1" stop-color="hsl(120,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-0e" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(0,78%,25%)"/><stop offset="1" stop-color="hsl(0,58%,55%)"/></linearGradient>
+<marker id="m-r01-0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4a5568"/></marker>
+</defs>
+<rect width="900" height="260" fill="#ffffff"/>
+<g stroke="#4a5568" stroke-width="2" marker-end="url(#m-r01-0)">
+<line x1="290" y1="48" x2="358" y2="112"/><line x1="290" y1="128" x2="358" y2="128"/><line x1="290" y1="208" x2="358" y2="144"/><line x1="540" y1="128" x2="618" y2="128"/>
+</g>
+<rect x="30" y="20" width="260" height="56" rx="8" fill="url(#g-r01-0a)"/>
+<rect x="30" y="100" width="260" height="56" rx="8" fill="url(#g-r01-0b)"/>
+<rect x="30" y="180" width="260" height="56" rx="8" fill="url(#g-r01-0c)"/>
+<rect x="360" y="95" width="180" height="66" rx="8" fill="url(#g-r01-0d)"/>
+<rect x="620" y="95" width="250" height="66" rx="8" fill="url(#g-r01-0e)"/>
+<g fill="#ffffff" text-anchor="middle">
+<text x="160" y="43" font-size="15" font-weight="700">doom の範囲</text><text x="160" y="64" font-size="12">絶滅だけか、支配の喪失も含むか</text>
+<text x="160" y="123" font-size="15" font-weight="700">期間</text><text x="160" y="144" font-size="12">今世紀中か、10 年以内か</text>
+<text x="160" y="203" font-size="15" font-weight="700">前提</text><text x="160" y="224" font-size="12">AGI ができたら、など</text>
+<text x="450" y="124" font-size="15" font-weight="700">本人の主観</text><text x="450" y="145" font-size="12">勘・世界観・立場</text>
+<text x="745" y="124" font-size="17" font-weight="700">p(doom) ＝ ○%</text><text x="745" y="145" font-size="12">人ごとに定義が違う数字</text>
+</g>
+</svg>
+<figcaption>同じ「p(doom)」でも、範囲・期間・前提が人ごとに違い、最後は主観で決まる。</figcaption>
+</figure>
 <div class="callout"><strong>並べて比べるときの注意:</strong> 定義も期間もばらばらなので、第 2 章の数値は厳密に比較できない。批判する側は「科学を装った雰囲気（vibes）」だと指摘している（Gizmodo, 2026-09）。Hinton 自身も「確率を言う人はみな勘で言っている」と認めている。</div>
 </section>
 
@@ -133,7 +162,7 @@ footer { padding: 18px 30px 30px; }
 <rect x="220" y="406" width="64" height="18" fill="url(#g-r01-1k)"/>
 <rect x="220" y="436" width="2" height="18" fill="url(#g-r01-1l)"/>
 <g font-size="12.5" fill="#1c2330">
-<text x="800" y="60" fill="#ffffff" font-weight="700">99.9% 以上</text>
+<text x="765" y="60" fill="#ffffff" font-weight="700">99.9% 以上</text>
 <text x="770" y="90" fill="#ffffff" font-weight="700">95% 超</text>
 <text x="802" y="120">10〜90%</text>
 <text x="674" y="150">70%</text>
@@ -146,7 +175,7 @@ footer { padding: 18px 30px 30px; }
 <text x="322" y="360">約 15%</text>
 <text x="303" y="390">12%</text>
 <text x="290" y="420">10% 超（10年以内）</text>
-<text x="228" y="450">0.01% 未満</text>
+<text x="260" y="450">0.01% 未満</text>
 </g>
 </svg>
 <figcaption>色は値の上限で決めた。0% が紫、100% が赤で、その間は虹色の順に変わる。濃い部分: 本人が挙げた値、または幅のある見積もりの範囲。薄い部分: 範囲の下限までの部分。数値を出していない Altman と Hassabis は載せていない。</figcaption>
@@ -187,6 +216,36 @@ footer { padding: 18px 30px 30px; }
 
 <h2>未来図：変化の速さ（takeoff）の想定で分かれる</h2>
 <p>スライド「AGI 到来から 10 年後のイメージ」は、立場ごとに 10 年後の世界を描き分けている。</p>
+<figure class="chart">
+<img src="images/slide-takeoff.jpg" alt="スライド「AGI 到来から 10 年後のイメージ」。左から、緑の多い未来都市（AI as Normal Technology）、宇宙の巨大構造物（Slow takeoff）、割れて燃える地球（fast takeoff）" width="1280" height="797">
+<figcaption>引用元: YouTube <a href="https://youtu.be/sCLvBXL0tdw">「シンギュラリティサロン＆AGI Hubコラボ第２弾（その１）～『知能爆発』とは何か？bioshokさんの書籍発刊～AGIピル・AI脅威論・トランスヒューマニズム」</a>（チャンネル: SingularitySalon）のスライドから、スライド部分だけを切り出した。</figcaption>
+</figure>
+<p>このスライドの 3 つの世界観を、能力の伸び方として模式的に描くと次のようになる。</p>
+<figure class="chart">
+<svg viewBox="0 0 900 380" role="img" aria-label="3 つの takeoff の能力の伸び方">
+<rect width="900" height="380" fill="#ffffff"/>
+<line x1="80" y1="330" x2="870" y2="330" stroke="#4a5568" stroke-width="2"/>
+<line x1="80" y1="330" x2="80" y2="20" stroke="#4a5568" stroke-width="2"/>
+<line x1="80" y1="230" x2="870" y2="230" stroke="#97a1ae" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="90" y="222" font-size="12.5" fill="#4a5568">人間の水準</text>
+<text x="80" y="352" font-size="13" fill="#4a5568" text-anchor="middle">AGI 到来</text>
+<text x="860" y="352" font-size="13" fill="#4a5568" text-anchor="middle">10 年後</text>
+<text x="470" y="372" font-size="13" fill="#4a5568" text-anchor="middle">時間 →</text>
+<text x="40" y="180" font-size="13" fill="#4a5568" text-anchor="middle" transform="rotate(-90 40 180)">AI の能力 →</text>
+<path d="M80,300 C300,285 600,255 860,215" fill="none" stroke="hsl(200,78%,38%)" stroke-width="4"/>
+<path d="M80,300 C400,285 620,170 860,60" fill="none" stroke="hsl(120,78%,30%)" stroke-width="4"/>
+<path d="M80,300 C190,296 240,285 268,258 C290,225 300,120 308,50" fill="none" stroke="hsl(0,78%,42%)" stroke-width="4"/>
+<line x1="309" y1="42" x2="312" y2="4" stroke="hsl(0,78%,42%)" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 9"/>
+<text x="620" y="290" font-size="14" font-weight="700" fill="hsl(200,78%,30%)">AI as Normal Technology</text>
+<text x="620" y="310" font-size="12" fill="#1c2330">普通の技術として少しずつ</text>
+<text x="690" y="172" font-size="14" font-weight="700" fill="hsl(120,78%,25%)">Slow takeoff</text>
+<text x="690" y="192" font-size="12" fill="#1c2330">数年〜十数年で跳ね上がる</text>
+<text x="335" y="60" font-size="14" font-weight="700" fill="hsl(0,78%,35%)">Fast takeoff</text>
+<text x="335" y="80" font-size="12" fill="#1c2330">自己改良で一気に超知能へ（上限なし）</text>
+<text x="250" y="165" font-size="14" font-weight="700" fill="hsl(0,78%,35%)" text-anchor="end">≪ 10yr</text>
+</svg>
+<figcaption>筆者の模式図。曲線の形は考え方を示すもので、数値に根拠はない。人間の水準を越えてから「途中で直す時間」がどれだけあるかが、立場によって大きく違う。</figcaption>
+</figure>
 <div class="tablewrap"><table>
 <thead><tr><th></th><th>AGI ピルの外</th><th>AGI ピル</th><th>ASI ピル（doomer）</th></tr></thead>
 <tbody>
@@ -238,6 +297,52 @@ footer { padding: 18px 30px 30px; }
 
 <h2>知的系譜：脅威論はトランスヒューマニズムから生まれた</h2>
 <p>スライド「その知的系譜はトランスヒューマニズムにある」は、丸山隆一氏の図「現代の AGI リスク論に至る 5 つの流れ」（<a href="https://researchmap.jp/rmaruy/published_works">researchmap</a>）を引用している。年は図の位置と筆者の記憶によるもので、確かめていない。</p>
+<figure class="chart">
+<svg viewBox="0 0 900 410" role="img" aria-label="現代の AGI リスク論に至る 5 つの流れの年表">
+<defs>
+<linearGradient id="g-r01-4a" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(280,78%,25%)"/><stop offset="1" stop-color="hsl(280,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-4b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(210,78%,25%)"/><stop offset="1" stop-color="hsl(210,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-4c" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(140,78%,25%)"/><stop offset="1" stop-color="hsl(140,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-4d" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(70,78%,25%)"/><stop offset="1" stop-color="hsl(70,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-4e" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(0,78%,25%)"/><stop offset="1" stop-color="hsl(0,58%,55%)"/></linearGradient>
+</defs>
+<rect width="900" height="410" fill="#ffffff"/>
+<g stroke="#d9dfe8" stroke-width="1">
+<line x1="120" y1="20" x2="120" y2="375"/><line x1="260" y1="20" x2="260" y2="375"/><line x1="400" y1="20" x2="400" y2="375"/><line x1="540" y1="20" x2="540" y2="375"/><line x1="680" y1="20" x2="680" y2="375"/><line x1="820" y1="20" x2="820" y2="375"/>
+</g>
+<line x1="100" y1="375" x2="870" y2="375" stroke="#4a5568" stroke-width="2"/>
+<g font-size="13" fill="#4a5568" text-anchor="middle">
+<text x="120" y="395">2000</text><text x="260" y="395">2005</text><text x="400" y="395">2010</text><text x="540" y="395">2015</text><text x="680" y="395">2020</text><text x="820" y="395">2025</text>
+</g>
+<rect x="764" y="40" width="96" height="22" rx="5" fill="url(#g-r01-4e)"/>
+<rect x="540" y="110" width="320" height="22" rx="5" fill="url(#g-r01-4d)"/>
+<rect x="372" y="180" width="488" height="22" rx="5" fill="url(#g-r01-4c)"/>
+<rect x="260" y="250" width="600" height="22" rx="5" fill="url(#g-r01-4b)"/>
+<rect x="120" y="320" width="740" height="22" rx="5" fill="url(#g-r01-4a)"/>
+<g font-size="13" font-weight="700">
+<text x="860" y="32" fill="hsl(0,78%,35%)" text-anchor="end">5 政府との連携</text>
+<text x="540" y="102" fill="hsl(70,78%,22%)">4 AGI 企業・技術的安全性</text>
+<text x="372" y="172" fill="hsl(140,78%,25%)">3 効果的利他主義（EA）</text>
+<text x="260" y="242" fill="hsl(210,78%,30%)">2 科学者・哲学者・篤志家の x-risk 論</text>
+<text x="120" y="312" fill="hsl(280,78%,30%)">1 トランスヒューマニストの AGI 脅威論</text>
+</g>
+<g fill="#ffffff" stroke="#1c2330" stroke-width="1.5">
+<circle cx="770" cy="51" r="5"/><circle cx="792" cy="51" r="5"/>
+<circle cx="546" cy="121" r="5"/><circle cx="708" cy="121" r="5"/><circle cx="736" cy="121" r="5"/>
+<circle cx="380" cy="191" r="5"/><circle cx="428" cy="191" r="5"/><circle cx="512" cy="191" r="5"/><circle cx="680" cy="191" r="5"/>
+<circle cx="266" cy="261" r="5"/><circle cx="456" cy="261" r="5"/><circle cx="512" cy="261" r="5"/><circle cx="596" cy="261" r="5"/><circle cx="764" cy="261" r="5"/>
+<circle cx="126" cy="331" r="5"/><circle cx="372" cy="331" r="5"/><circle cx="512" cy="331" r="5"/>
+</g>
+<g font-size="11" fill="#1c2330" text-anchor="middle">
+<text x="781" y="78">AISI・ARIA</text>
+<text x="555" y="148">OpenAI</text><text x="722" y="148">ARC・Anthropic・CAIS</text>
+<text x="375" y="218">GWWC</text><text x="438" y="218">80,000 Hours</text><text x="516" y="218">Open Phil.</text><text x="680" y="218">The Precipice</text>
+<text x="266" y="288">FHI</text><text x="456" y="288">CSER</text><text x="512" y="288">FLI</text><text x="596" y="288">アシロマ原則</text><text x="764" y="288">一時停止書簡</text>
+<text x="136" y="358">MIRI</text><text x="372" y="358">LessWrong</text><text x="512" y="358">Superintelligence</text>
+</g>
+</svg>
+<figcaption>丸山隆一氏の図をもとに筆者が描き直したもの。帯の左端はその流れの始まり、丸は主な出来事（年は概数）。5 つの流れが右端で合流し、現代の AGI リスク論になる。</figcaption>
+</figure>
 <div class="tablewrap"><table>
 <thead><tr><th>#</th><th>流れ</th><th>図にある主な出来事</th></tr></thead>
 <tbody>
@@ -253,6 +358,36 @@ footer { padding: 18px 30px 30px; }
 <section class="ch04" id="ch04">
 <h1>滅亡論と反対論</h1>
 <p>「AI で人類は滅亡しうる」という主張と、それへの反対論を、互いの反論とあわせて並べる。論点の整理は筆者による。代表的な論者は一般に知られている範囲で挙げており、個々の発言の出典までは確かめていない。</p>
+<figure class="chart">
+<svg viewBox="0 0 900 340" role="img" aria-label="滅亡論と反対論の論点が対立の芯に集まる図">
+<defs>
+<linearGradient id="g-r01-5a" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(0,78%,25%)"/><stop offset="1" stop-color="hsl(0,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-5b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(210,78%,25%)"/><stop offset="1" stop-color="hsl(210,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-5c" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(160,78%,25%)"/><stop offset="1" stop-color="hsl(160,58%,55%)"/></linearGradient>
+<marker id="m-r01-5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#97a1ae"/></marker>
+</defs>
+<rect width="900" height="340" fill="#ffffff"/>
+<text x="135" y="24" font-size="16" font-weight="700" fill="hsl(0,78%,35%)" text-anchor="middle">滅亡論</text>
+<text x="765" y="24" font-size="16" font-weight="700" fill="hsl(210,78%,30%)" text-anchor="middle">反対論</text>
+<g stroke="#97a1ae" stroke-width="1.5" marker-end="url(#m-r01-5)">
+<line x1="250" y1="58" x2="338" y2="150"/><line x1="250" y1="106" x2="338" y2="160"/><line x1="250" y1="154" x2="338" y2="170"/><line x1="250" y1="202" x2="338" y2="180"/><line x1="250" y1="250" x2="338" y2="190"/><line x1="250" y1="298" x2="338" y2="200"/>
+<line x1="650" y1="58" x2="562" y2="150"/><line x1="650" y1="106" x2="562" y2="160"/><line x1="650" y1="154" x2="562" y2="170"/><line x1="650" y1="202" x2="562" y2="180"/><line x1="650" y1="250" x2="562" y2="190"/><line x1="650" y1="298" x2="562" y2="200"/>
+</g>
+<g fill="url(#g-r01-5a)">
+<rect x="20" y="40" width="230" height="36" rx="6"/><rect x="20" y="88" width="230" height="36" rx="6"/><rect x="20" y="136" width="230" height="36" rx="6"/><rect x="20" y="184" width="230" height="36" rx="6"/><rect x="20" y="232" width="230" height="36" rx="6"/><rect x="20" y="280" width="230" height="36" rx="6"/>
+</g>
+<g fill="url(#g-r01-5b)">
+<rect x="650" y="40" width="230" height="36" rx="6"/><rect x="650" y="88" width="230" height="36" rx="6"/><rect x="650" y="136" width="230" height="36" rx="6"/><rect x="650" y="184" width="230" height="36" rx="6"/><rect x="650" y="232" width="230" height="36" rx="6"/><rect x="650" y="280" width="230" height="36" rx="6"/>
+</g>
+<rect x="340" y="120" width="220" height="110" rx="10" fill="url(#g-r01-5c)"/>
+<g font-size="13.5" fill="#ffffff" text-anchor="middle">
+<text x="135" y="63">アラインメントできない</text><text x="135" y="111">どんな目標でも人間と衝突</text><text x="135" y="159">知能爆発で一気に超知能</text><text x="135" y="207">やり直しがきかない</text><text x="135" y="255">開発競争で安全が後回し</text><text x="135" y="303">生物兵器などの悪用</text>
+<text x="765" y="63">確率に根拠がない</text><text x="765" y="111">目の前の害が先</text><text x="765" y="159">企業の宣伝にすぎない</text><text x="765" y="207">終末予言は外れてきた</text><text x="765" y="255">物理世界は支配できない</text><text x="765" y="303">電源を切ればよい</text>
+<text x="450" y="152" font-size="16" font-weight="700">対立の芯</text><text x="450" y="182">変化はどれだけ速いか</text><text x="450" y="208">人間は途中で直せるか</text>
+</g>
+</svg>
+<figcaption>どちらの側の論点も、最後は中央の 2 つの問いに行き着く。左右の箱は、下の 2 つの表の各行に対応する。</figcaption>
+</figure>
 
 <h2>滅亡論の主張と、それへの反論</h2>
 <div class="tablewrap"><table>
@@ -283,6 +418,37 @@ footer { padding: 18px 30px 30px; }
 <section class="ch05" id="ch05">
 <h1>ニュースの流れ</h1>
 <p>2023 年の警告ラッシュ、2025 年の超知能禁止声明を経て、2026 年 9 月に AI 企業の内部者が相次いで警告し、議論が再燃した。</p>
+<figure class="chart">
+<svg viewBox="0 0 900 260" role="img" aria-label="2023 年から 2026 年までのニュースの年表">
+<defs>
+<linearGradient id="g-r01-6a" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(0,78%,25%)"/><stop offset="1" stop-color="hsl(0,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-6b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(30,78%,25%)"/><stop offset="1" stop-color="hsl(30,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-6c" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(280,78%,25%)"/><stop offset="1" stop-color="hsl(280,58%,55%)"/></linearGradient>
+</defs>
+<rect width="900" height="260" fill="#ffffff"/>
+<line x1="40" y1="130" x2="870" y2="130" stroke="#4a5568" stroke-width="3"/>
+<g font-size="13" fill="#4a5568" text-anchor="middle">
+<text x="60" y="150">2023</text><text x="260" y="150">2024</text><text x="460" y="150">2025</text><text x="660" y="150">2026</text>
+</g>
+<g stroke="#4a5568" stroke-width="1.5">
+<line x1="100" y1="130" x2="100" y2="74"/><line x1="137" y1="130" x2="137" y2="175"/><line x1="620" y1="130" x2="620" y2="74"/><line x1="800" y1="130" x2="800" y2="175"/>
+</g>
+<g fill="#ffffff" stroke="#1c2330" stroke-width="1.5">
+<circle cx="100" cy="130" r="6"/><circle cx="137" cy="130" r="6"/><circle cx="620" cy="130" r="6"/><circle cx="800" cy="130" r="6"/>
+</g>
+<rect x="20" y="28" width="250" height="46" rx="6" fill="url(#g-r01-6a)"/>
+<rect x="40" y="175" width="270" height="50" rx="6" fill="url(#g-r01-6a)"/>
+<rect x="480" y="28" width="280" height="46" rx="6" fill="url(#g-r01-6b)"/>
+<rect x="550" y="175" width="330" height="70" rx="6" fill="url(#g-r01-6c)"/>
+<g font-size="12.5" fill="#ffffff">
+<text x="30" y="47" font-weight="700">2023-03</text><text x="30" y="66">Yudkowsky「すべて止めるべきだ」</text>
+<text x="50" y="194" font-weight="700">2023-05</text><text x="50" y="214">Hinton が Google を退社・CAIS の絶滅声明</text>
+<text x="490" y="47" font-weight="700">2025-10</text><text x="490" y="66">FLI の超知能禁止声明に 850 人超が署名</text>
+<text x="560" y="194" font-weight="700">2026-09〜10</text><text x="560" y="214">AI 企業の内部者が相次いで警告</text><text x="560" y="234">→ トランプ「HOAX」、p(doom) 批判も噴出</text>
+</g>
+</svg>
+<figcaption>赤は警告、橙は署名活動、紫は警告とそれへの反発が同時に起きた時期。2026 年 9 月以降の動きは表の下半分に対応する。</figcaption>
+</figure>
 <div class="tablewrap"><table>
 <thead><tr><th>日付</th><th>媒体・内容</th><th>リンク</th></tr></thead>
 <tbody>
@@ -299,6 +465,52 @@ footer { padding: 18px 30px 30px; }
 
 <section class="ch06" id="ch06">
 <h1>国家元首・首脳の反応</h1>
+<p>首脳の発言を、「AI のリスクを否定・軽視する」から「存亡リスクに言及する」までの物差しに並べた。</p>
+<figure class="chart">
+<svg viewBox="0 0 900 300" role="img" aria-label="首脳の発言を否定から存亡リスク言及までの物差しに並べた図">
+<defs>
+<linearGradient id="g-r01-7z" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="hsl(210,58%,55%)"/><stop offset="1" stop-color="hsl(0,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-7a" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(202,78%,25%)"/><stop offset="1" stop-color="hsl(202,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-7b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(151,78%,25%)"/><stop offset="1" stop-color="hsl(151,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-7c" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(129,78%,25%)"/><stop offset="1" stop-color="hsl(129,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-7d" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(110,78%,25%)"/><stop offset="1" stop-color="hsl(110,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-7e" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(70,78%,25%)"/><stop offset="1" stop-color="hsl(70,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-7f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(65,78%,25%)"/><stop offset="1" stop-color="hsl(65,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-7g" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(30,78%,25%)"/><stop offset="1" stop-color="hsl(30,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-7h" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(11,78%,25%)"/><stop offset="1" stop-color="hsl(11,58%,55%)"/></linearGradient>
+</defs>
+<rect width="900" height="300" fill="#ffffff"/>
+<rect x="60" y="142" width="780" height="16" rx="8" fill="url(#g-r01-7z)"/>
+<text x="60" y="288" font-size="13" font-weight="700" fill="hsl(210,78%,30%)">← 否定・軽視</text>
+<text x="840" y="288" font-size="13" font-weight="700" fill="hsl(0,78%,35%)" text-anchor="end">存亡リスクに言及 →</text>
+<g stroke="#4a5568" stroke-width="1.5">
+<line x1="90" y1="84" x2="90" y2="150"/><line x1="360" y1="84" x2="360" y2="150"/><line x1="600" y1="84" x2="600" y2="150"/><line x1="800" y1="84" x2="800" y2="150"/>
+<line x1="280" y1="150" x2="280" y2="216"/><line x1="430" y1="150" x2="430" y2="216"/><line x1="580" y1="150" x2="580" y2="216"/><line x1="730" y1="150" x2="730" y2="216"/>
+</g>
+<g fill="#ffffff" stroke="#1c2330" stroke-width="1.5">
+<circle cx="90" cy="150" r="5"/><circle cx="280" cy="150" r="5"/><circle cx="360" cy="150" r="5"/><circle cx="430" cy="150" r="5"/><circle cx="580" cy="150" r="5"/><circle cx="600" cy="150" r="5"/><circle cx="730" cy="150" r="5"/><circle cx="800" cy="150" r="5"/>
+</g>
+<rect x="25" y="40" width="130" height="44" rx="6" fill="url(#g-r01-7a)"/>
+<rect x="295" y="40" width="130" height="44" rx="6" fill="url(#g-r01-7c)"/>
+<rect x="535" y="40" width="130" height="44" rx="6" fill="url(#g-r01-7f)"/>
+<rect x="735" y="40" width="130" height="44" rx="6" fill="url(#g-r01-7h)"/>
+<rect x="215" y="216" width="130" height="44" rx="6" fill="url(#g-r01-7b)"/>
+<rect x="365" y="216" width="130" height="44" rx="6" fill="url(#g-r01-7d)"/>
+<rect x="515" y="216" width="130" height="44" rx="6" fill="url(#g-r01-7e)"/>
+<rect x="665" y="216" width="130" height="44" rx="6" fill="url(#g-r01-7g)"/>
+<g fill="#ffffff" text-anchor="middle">
+<text x="90" y="58" font-size="13.5" font-weight="700">トランプ</text><text x="90" y="76" font-size="12">「HOAX」</text>
+<text x="360" y="58" font-size="13.5" font-weight="700">モディ</text><text x="360" y="76" font-size="12">鍵を握るのは人類</text>
+<text x="600" y="58" font-size="13.5" font-weight="700">習近平</text><text x="600" y="76" font-size="12">制御から外さない</text>
+<text x="800" y="58" font-size="13.5" font-weight="700">スナク</text><text x="800" y="76" font-size="12">絶滅リスクを検討</text>
+<text x="280" y="234" font-size="13.5" font-weight="700">プーチン</text><text x="280" y="252" font-size="12">制する者が支配者</text>
+<text x="430" y="234" font-size="13.5" font-weight="700">バイデン</text><text x="430" y="252" font-size="12">可能性とリスク</text>
+<text x="580" y="234" font-size="13.5" font-weight="700">マクロン</text><text x="580" y="252" font-size="12">制御を奪われない</text>
+<text x="730" y="234" font-size="13.5" font-weight="700">ゼレンスキー</text><text x="730" y="252" font-size="12">AI の軍拡に警告</text>
+</g>
+</svg>
+<figcaption>位置は発言の内容から筆者が判断したもの。人類の絶滅に正面から触れたのは英国のスナク首相（当時）だけで、多くの首脳は「制御」や「軍事」の話にとどまる。</figcaption>
+</figure>
 <h2>トランプ米大統領：「HOAX（でっちあげ）」</h2>
 <p>2026-09-14、AI のリスクへの警告を「HOAX」と呼んだ。「地球温暖化詐欺」やロシア疑惑と同じ類いの「病んだ陰謀」だとし、AI に必要な歯止めは「強く賢い大統領」だけだと主張した。業界の内部から絶滅リスクの警告が相次ぎ、規制を求める声が強まっていた最中の発言である。</p>
 <ul>
@@ -324,6 +536,38 @@ footer { padding: 18px 30px 30px; }
 <section class="ch07" id="ch07">
 <h1>日本の論調</h1>
 <p>日本では存亡リスクの議論自体が少なく、2026 年 9 月の海外での警告を受けて、ようやく大手メディアが報じ始めた段階にある。</p>
+<figure class="chart">
+<svg viewBox="0 0 900 270" role="img" aria-label="日本の論者・政府の立ち位置">
+<defs>
+<linearGradient id="g-r01-8z" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="hsl(210,58%,55%)"/><stop offset="1" stop-color="hsl(0,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-8a" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(180,78%,25%)"/><stop offset="1" stop-color="hsl(180,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-8b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(130,78%,25%)"/><stop offset="1" stop-color="hsl(130,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-8c" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(55,78%,25%)"/><stop offset="1" stop-color="hsl(55,58%,55%)"/></linearGradient>
+<linearGradient id="g-r01-8d" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="hsl(8,78%,25%)"/><stop offset="1" stop-color="hsl(8,58%,55%)"/></linearGradient>
+</defs>
+<rect width="900" height="270" fill="#ffffff"/>
+<rect x="60" y="117" width="780" height="16" rx="8" fill="url(#g-r01-8z)"/>
+<text x="20" y="260" font-size="13" font-weight="700" fill="hsl(210,78%,30%)">← 存亡リスクに触れない</text>
+<text x="890" y="260" font-size="13" font-weight="700" fill="hsl(0,78%,35%)" text-anchor="end">存亡リスクを正面から論じる →</text>
+<g stroke="#4a5568" stroke-width="1.5">
+<line x1="200" y1="76" x2="200" y2="125"/><line x1="620" y1="76" x2="620" y2="125"/><line x1="340" y1="125" x2="340" y2="178"/><line x1="790" y1="125" x2="790" y2="178"/>
+</g>
+<g fill="#ffffff" stroke="#1c2330" stroke-width="1.5">
+<circle cx="200" cy="125" r="5"/><circle cx="340" cy="125" r="5"/><circle cx="620" cy="125" r="5"/><circle cx="790" cy="125" r="5"/>
+</g>
+<rect x="100" y="20" width="200" height="56" rx="6" fill="url(#g-r01-8a)"/>
+<rect x="510" y="20" width="220" height="56" rx="6" fill="url(#g-r01-8c)"/>
+<rect x="230" y="178" width="220" height="56" rx="6" fill="url(#g-r01-8b)"/>
+<rect x="670" y="178" width="220" height="56" rx="6" fill="url(#g-r01-8d)"/>
+<g fill="#ffffff" text-anchor="middle">
+<text x="200" y="42" font-size="13.5" font-weight="700">Forbes JAPAN の論考</text><text x="200" y="63" font-size="12">滅亡より目の前の課題を</text>
+<text x="620" y="42" font-size="13.5" font-weight="700">孫正義</text><text x="620" y="63" font-size="12">人類が頂点の時代は終わる</text>
+<text x="340" y="200" font-size="13.5" font-weight="700">日本政府（岸田・高市）</text><text x="340" y="221" font-size="12">信頼できる AI・リスク最小化</text>
+<text x="780" y="200" font-size="13.5" font-weight="700">山川宏</text><text x="780" y="221" font-size="12">存亡リスクは「部屋の中の象」</text>
+</g>
+</svg>
+<figcaption>位置は筆者の判断。政府は「リスクの最小化」の枠組みにとどまり、存亡リスクを正面から論じているのは研究者の一部である。孫氏は人間が主役でなくなる未来を語るが、滅亡ではなく共存の立場をとる。</figcaption>
+</figure>
 <h2>研究者・経営者</h2>
 <div class="tablewrap"><table>
 <thead><tr><th>人物</th><th>内容</th><th>日付</th><th>出典</th></tr></thead>
